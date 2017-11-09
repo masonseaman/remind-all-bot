@@ -4,7 +4,7 @@ from telebot import types
 
 import time
 
-import thread
+import threading
 
 bot = telebot.TeleBot("400097540:AAF6iHaEHszGa7imNitGqdewGRdsWNOtJoM")
 
@@ -51,7 +51,7 @@ def process_reminder_step(message):
 		chat_id = message.chat.id
 		reminder = message.text
 		bot.send_message(chat_id, "Great! I'll remind you to " + reminder + " in " + mins + " minutes!")
-		thread.start_new_thread(time_loop, mins)
+		t1=threading.Thread(target=time_loop, mins)
 	except Exception as e:
 		bot.reply_to(message, 'oooops')
 
