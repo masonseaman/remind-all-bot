@@ -13,16 +13,6 @@ chat_id = ""
 mins = ""
 reminder = ""
 
-class time_loop (threading.Thread):
-   def __init__(self, threadID, name, counter):
-      threading.Thread.__init__(self)
-      self.threadID = threadID
-      self.name = name
-      self.counter = counter
-   def run(self):
-      print "Starting " + self.name
-      print_time(self.name, 5, self.counter)
-      print "Exiting " + self.name
 def time_loop(minutes):
 	global mins, reminder
 	seconds = minutes * 60
