@@ -36,7 +36,7 @@ def process_reminder_step(message):
 		markup = types.ForceReply(selective=False)
 		msg = bot.reply_to(message,"In how many minutes would you like to be reminded?", reply_markup = markup)
 		msg.text = msg.text + "\n" + reminder
-		bot.register_next_step_handler(val, process_mins_step)
+		bot.register_next_step_handler(msg, process_mins_step)
 	except Exception as e:
 		print(e)
 		bot.reply_to(message, "i goofed, try again")
