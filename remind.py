@@ -15,7 +15,7 @@ reminder = ""
 
 def time_loop(minutes):
 	global mins, reminder
-	seconds = minutes * 60
+	seconds = int(minutes) * 60
 	while(seconds > 0):
 		seconds = seconds - 1
 		sleep(1)
