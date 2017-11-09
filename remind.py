@@ -19,6 +19,7 @@ def start_remind_queries(message):
 
 def process_mins_step(message):
 	try:
+		global mins
 		chat_id = message.chat.id
 		mins = message.text
 		markup = types.ForceReply(selective=False)
@@ -29,10 +30,11 @@ def process_mins_step(message):
 
 def process_reminder_step(message):
 	try:
+		global reminder
 		chat_id = message.chat.id
 		reminder = message.text
 		bot.send_message(chat_id, "Great! I'll remind you to " + reminder + " in " + mins + " minutes!")
 	except Exception as e:
 		bot.reply_to(message, 'oooops')
-		
+
 bot.polling()
