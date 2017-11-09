@@ -13,8 +13,8 @@ chat_id = ""
 mins = ""
 reminder = ""
 
-def time_loop(mins):
-	seconds = mins * 60
+def time_loop(minutes):
+	seconds = minutes * 60
 	while(seconds > 0):
 		seconds = seconds - 1
 		sleep(1)
