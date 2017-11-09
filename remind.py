@@ -34,9 +34,9 @@ def process_reminder_step(message):
 		markup = types.ForceReply(selective=False)
 		msg = bot.reply_to(message,"In how many minutes would you like to be reminded?", reply_markup = markup)
 		val = msg.text + "\n" + reminder
-		bot.register_next_step_handler(msg, process_reminder_step)
+		bot.register_next_step_handler(msg, process_mins_step)
 	except Exception as e:
-		bot.reply_to(message, e)
+		bot.reply_to(message, "sorry, I messed up, try again")
 
 def process_mins_step(message):
 	try:
@@ -48,6 +48,6 @@ def process_mins_step(message):
 		t1=threading.Thread(target=time_loop, args=(chat_id, mins, reminder))
 		t1.start()
 	except Exception as e:
-		bot.reply_to(message, 'oooops')
+		bot.reply_to(message, 'sorry, I messed up, try again')
 
 bot.polling()
