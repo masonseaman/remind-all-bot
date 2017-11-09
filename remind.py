@@ -15,7 +15,7 @@ def send_welcome(message):
 def start_remind_queries(message):
 	markup = types.ForceReply(selective=False)
 	msg = bot.reply_to(message,"In how many minutes would you like to be reminded?",reply_markup=markup)
-	bot.register_next_step_handler(msg, process_ mins_step)
+	bot.register_next_step_handler(msg, process_mins_step)
 
 def process_mins_step(message):
 	try:
