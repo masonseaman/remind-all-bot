@@ -44,7 +44,7 @@ def process_reminder_step(message):
 def process_mins_step(message):
 	try:
 		chat_id = message.chat.id
-		arr = message.text.split('\n', 1)
+		arr = message.text.split('\n', 2)
 		print(arr)
 		mins = arr[0]
 		reminder = arr[1]
