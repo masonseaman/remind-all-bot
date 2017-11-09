@@ -25,7 +25,7 @@ def time_loop(minutes):
 
 @bot.message_handler(commands=['start','help'])
 def send_welcome(message):
-	bot.reply_to(message, "Hi I'm RemindAllBot,x I'll send you reminders! Type /remind to get started!")
+	bot.reply_to(message, "Hi I'm RemindAllBot, I'll send you reminders! Type /remind to get started!")
 
 @bot.message_handler(commands=['remind'])
 def start_remind_queries(message):
