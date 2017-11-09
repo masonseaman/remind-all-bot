@@ -13,6 +13,6 @@ def start_remind_queries(message):
 	markup = types.ForceReply(selective=False)
 	bot.reply_to(message,"In how many minutes would you like to be reminded?",reply_markup=markup)
 	mins = message.text
-	bot.send_message(chat_id,int(mins))
+	bot.send_message(message.chat.id,int(mins))
 	
 bot.polling()
