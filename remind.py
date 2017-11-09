@@ -45,6 +45,7 @@ def process_mins_step(message):
 	try:
 		chat_id = message.chat.id
 		arr = message.text.split('\n', 1)
+		print(arr)
 		mins = arr[0]
 		reminder = arr[1]
 		bot.send_message(chat_id, "Great! I'll remind you to " + reminder + " in " + mins + " minutes!")
