@@ -19,13 +19,13 @@ def start_remind_queries(message):
 
 def process_mins_step(message):
 	try:
-        chat_id = message.chat.id
-        mins = message.text
-        markup = types.ForceReply(selective=False)
-        msg = bot.reply_to(message,"What would you like the reminder to say?", reply_markup = markup)
-        bot.register_next_step_handler(msg, process_reminder_step)
-    except Exception as e:
-        bot.reply_to(message, 'oooops')
+		chat_id = message.chat.id
+		mins = message.text
+		markup = types.ForceReply(selective=False)
+		msg = bot.reply_to(message,"What would you like the reminder to say?", reply_markup = markup)
+		bot.register_next_step_handler(msg, process_reminder_step)
+	except Exception as e:
+		bot.reply_to(message, 'oooops')
 
 def process_reminder_step(message):
 	try:
