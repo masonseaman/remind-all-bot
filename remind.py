@@ -10,6 +10,5 @@ def send_welcome(message):
 def start_remind_queries(message):
 	markup = types.ForceReply(selective=False)
 	bot.reply_to(message,"In how many minutes would you like to be reminded?",reply_markup=markup)
-	mins = message.text
 	
 bot.polling()
