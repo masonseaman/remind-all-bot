@@ -32,4 +32,7 @@ def process_reminder_step(message):
 		chat_id = message.chat.id
 		reminder = message.text
 		bot.send_message(chat_id, "Great! I'll remind you to " + reminder + " in " + mins + " minutes!")
+	except Exception as e:
+		bot.reply_to(message, 'oooops')
+		
 bot.polling()
