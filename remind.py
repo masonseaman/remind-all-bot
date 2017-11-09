@@ -14,12 +14,12 @@ mins = ""
 reminder = ""
 
 def time_loop(minutes):
+	global mins, reminder
 	seconds = minutes * 60
 	while(seconds > 0):
 		seconds = seconds - 1
 		sleep(1)
 	bot.send_message(chat_id, "!!!\t\t"+reminder+"\t\t!!!")
-	global mins, reminder
 	mins = ""
 	reminder = ""
 
