@@ -2,10 +2,26 @@ import telebot
 
 from telebot import types
 
+import time
+
+import thread
+
 bot = telebot.TeleBot("400097540:AAF6iHaEHszGa7imNitGqdewGRdsWNOtJoM")
+
+chat_id = ""
 
 mins = ""
 reminder = ""
+
+def time_loop(mins):
+	seconds = mins * 60
+	while(seconds > 0):
+		seconds = seconds - 1
+		sleep(1)
+	bot.send_message(chat_id, "!!!\t\t"+reminder+"\t\t!!!")
+	global mins, reminder
+	mins = ""
+	reminder = ""
 
 @bot.message_handler(commands=['start','help'])
 def send_welcome(message):
@@ -20,6 +36,7 @@ def start_remind_queries(message):
 def process_mins_step(message):
 	try:
 		global mins
+		global chat_id
 		chat_id = message.chat.id
 		mins = message.text
 		markup = types.ForceReply(selective=False)
@@ -30,10 +47,11 @@ def process_mins_step(message):
 
 def process_reminder_step(message):
 	try:
-		global reminder
+		global reminder, mins
 		chat_id = message.chat.id
 		reminder = message.text
 		bot.send_message(chat_id, "Great! I'll remind you to " + reminder + " in " + mins + " minutes!")
+		thread.start_new_thread(time_loop, mins)
 	except Exception as e:
 		bot.reply_to(message, 'oooops')
 
