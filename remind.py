@@ -24,7 +24,7 @@ def send_welcome(message):
 @bot.message_handler(commands=['remind'])
 def start_remind_queries(message):
 	markup = types.ForceReply(selective=False)
-	msg = bot.reply_to(message,"What would you like the reminder to say",reply_markup=markup)
+	msg = bot.reply_to(message,"What would you like the reminder to say?",reply_markup=markup)
 	bot.register_next_step_handler(msg, process_reminder_step)
 
 def process_reminder_step(message):
@@ -33,9 +33,10 @@ def process_reminder_step(message):
 		reminder = message.text
 		markup = types.ForceReply(selective=False)
 		msg = bot.reply_to(message,"In how many minutes would you like to be reminded?", reply_markup = markup)
-		bot.register_next_step_handler(msg + "\n" + reminder, process_reminder_step)
+		msg = msg+"\n"+reminder
+		bot.register_next_step_handler(msg, process_reminder_step)
 	except Exception as e:
-		bot.reply_to(message, 'oooops')
+		bot.reply_to(message, e)
 
 def process_mins_step(message):
 	try:
