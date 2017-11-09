@@ -13,6 +13,16 @@ chat_id = ""
 mins = ""
 reminder = ""
 
+class time_loop (threading.Thread):
+   def __init__(self, threadID, name, counter):
+      threading.Thread.__init__(self)
+      self.threadID = threadID
+      self.name = name
+      self.counter = counter
+   def run(self):
+      print "Starting " + self.name
+      print_time(self.name, 5, self.counter)
+      print "Exiting " + self.name
 def time_loop(minutes):
 	global mins, reminder
 	seconds = minutes * 60
@@ -51,7 +61,8 @@ def process_reminder_step(message):
 		chat_id = message.chat.id
 		reminder = message.text
 		bot.send_message(chat_id, "Great! I'll remind you to " + reminder + " in " + mins + " minutes!")
-		t1=threading.Thread(target=time_loop, mins)
+		t1=threading.Thread(target=time_loop, args=(mins))
+		t1.start()
 	except Exception as e:
 		bot.reply_to(message, 'oooops')
 
