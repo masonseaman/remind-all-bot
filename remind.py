@@ -6,6 +6,8 @@ import time
 
 import threading
 
+import logging
+
 bot = telebot.TeleBot("400097540:AAF6iHaEHszGa7imNitGqdewGRdsWNOtJoM")
 
 def time_loop(chat_id, minutes, reminder):
@@ -36,7 +38,8 @@ def process_reminder_step(message):
 		val = msg.text + "\n" + reminder
 		bot.register_next_step_handler(msg, process_mins_step)
 	except Exception as e:
-		bot.reply_to(message, "sorry, I messed up, try again")
+		print(e)
+		bot.reply_to(message, "i goofed, try again")
 
 def process_mins_step(message):
 	try:
@@ -48,6 +51,7 @@ def process_mins_step(message):
 		t1=threading.Thread(target=time_loop, args=(chat_id, mins, reminder))
 		t1.start()
 	except Exception as e:
-		bot.reply_to(message, 'sorry, I messed up, try again')
+		print(e)
+		bot.reply_to(message, "i goofed, try again")
 
 bot.polling()
