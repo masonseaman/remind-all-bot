@@ -18,7 +18,7 @@ def time_loop(minutes):
 	seconds = int(minutes) * 60
 	while(seconds > 0):
 		seconds = seconds - 1
-		sleep(1)
+		time.sleep(1)
 	bot.send_message(chat_id, "!!!\t\t"+reminder+"\t\t!!!")
 	mins = ""
 	reminder = ""
