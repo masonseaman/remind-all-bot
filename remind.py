@@ -38,7 +38,7 @@ def process_reminder_step(message):
 		val = chat_id + "\t" + reminder + "\t" + msg.text
 		bot.register_next_step_handler(val, process_mins_step)
 	except Exception as e:
-		print("step: " + e)
+		print(e)
 		bot.reply_to(message, "i goofed, try again")
 
 def process_mins_step(message):
@@ -53,7 +53,7 @@ def process_mins_step(message):
 		t1=threading.Thread(target=time_loop, args=(chat_id, mins, reminder))
 		t1.start()
 	except Exception as e:
-		print("mins: " + e)
+		print(e)
 		bot.reply_to(message, "i goofed, try again")
 
 bot.polling()
