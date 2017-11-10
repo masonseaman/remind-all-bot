@@ -10,7 +10,7 @@ import logging
 
 bot = telebot.TeleBot("400097540:AAF6iHaEHszGa7imNitGqdewGRdsWNOtJoM")
 
-temp_reminder = ""
+reminder = ""
 
 def time_loop(chat_id, minutes, reminder):
 	seconds = int(minutes) * 60
