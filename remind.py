@@ -33,6 +33,7 @@ def start_remind_queries(message):
 
 def process_reminder_step(message):
 	try:
+		global reminder
 		chat_id = str (message.chat.id)
 		reminder = message.text
 		markup = types.ForceReply(selective=False)
