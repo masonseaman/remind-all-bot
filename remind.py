@@ -31,7 +31,7 @@ def start_remind_queries(message):
 
 def process_reminder_step(message):
 	try:
-		chat_id = message.chat.id
+		chat_id = str (message.chat.id)
 		reminder = message.text
 		markup = types.ForceReply(selective=False)
 		msg = bot.reply_to(message,"In how many minutes would you like to be reminded?", reply_markup = markup)
