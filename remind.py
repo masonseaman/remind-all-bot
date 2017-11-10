@@ -35,7 +35,7 @@ def process_reminder_step(message):
 		reminder = message.text
 		markup = types.ForceReply(selective=False)
 		msg = bot.reply_to(message,"In how many minutes would you like to be reminded?", reply_markup = markup)
-		val = chat_id + "\t" + reminder + "\t" + msg.text
+		val = str(chat_id) + "\t" + reminder + "\t" + msg.text
 		bot.register_next_step_handler(val, process_mins_step)
 	except Exception as e:
 		print(e)
@@ -46,8 +46,9 @@ def process_mins_step(message):
 		print(message)
 		arr = message.text.split('\t', 1)
 		print(arr)
-		mins = arr[0]
+		chat_id = int(arr[0])
 		reminder = arr[1]
+		mins = arr[2]
 		bot.send_message(chat_id, "Great! I'll remind you to " + reminder + " in " + mins + " minutes!")
 		t1=threading.Thread(target=time_loop, args=(chat_id, mins, reminder))
 		t1.start()
