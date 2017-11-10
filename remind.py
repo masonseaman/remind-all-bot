@@ -10,6 +10,8 @@ import logging
 
 bot = telebot.TeleBot("400097540:AAF6iHaEHszGa7imNitGqdewGRdsWNOtJoM")
 
+temp_reminder = ""
+
 def time_loop(chat_id, minutes, reminder):
 	seconds = int(minutes) * 60
 	while(seconds > 0):
@@ -35,24 +37,19 @@ def process_reminder_step(message):
 		reminder = message.text
 		markup = types.ForceReply(selective=False)
 		msg = bot.reply_to(message,"In how many minutes would you like to be reminded?", reply_markup = markup)
-		val = msg
-		val.text = msg.text + "\t" + reminder
-		print(val.text)
-		bot.register_next_step_handler(val, process_mins_step)
+		bot.register_next_step_handler(msg, process_mins_step)
 	except Exception as e:
 		print(e)
 		bot.reply_to(message, "i goofed, try again")
 
 def process_mins_step(message):
 	try:
-		print(message.text)
-		arr = message.text.split('\t', 1)
-		print(arr)
-		reminder = arr[0]
-		mins = arr[1]
+		global reminder
+		mins = message.text
 		bot.send_message(chat_id, "Great! I'll remind you to " + reminder + " in " + mins + " minutes!")
 		t1=threading.Thread(target=time_loop, args=(chat_id, mins, reminder))
 		t1.start()
+		reminder = ""
 	except Exception as e:
 		print(e)
 		bot.reply_to(message, "i goofed, try again")
