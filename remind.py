@@ -44,6 +44,7 @@ def process_reminder_step(message):
 
 def process_mins_step(message):
 	try:
+		print message.text
 		arr = message.text.split('\t', 1)
 		print(arr)
 		reminder = arr[0]
