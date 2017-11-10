@@ -47,7 +47,7 @@ def process_mins_step(message):
 		global reminder
 		mins = message.text
 		bot.send_message(chat_id, "Great! I'll remind you to " + reminder + " in " + mins + " minutes!")
-		t1=threading.Thread(target=time_loop, args=(chat_id, mins, reminder))
+		t1=threading.Thread(target=time_loop, args=(message.chat_id, mins, reminder))
 		t1.start()
 		reminder = ""
 	except Exception as e:
